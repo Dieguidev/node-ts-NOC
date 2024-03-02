@@ -1,5 +1,6 @@
 import { envs } from "../config/plugins/envs.plugin";
 import { CheckService } from "../domain/use-cases/checks/check.use-case";
+import { SendEmailLogs } from "../domain/use-cases/email/send-email-logs.use-case";
 import { FileSystemDatasource } from "../infrastructure/datasources/file-system.datasource";
 import { LogRepositoryImpl } from "../infrastructure/repositories/log.repository.imple";
 import { CronService } from "./cron/cron-service";
@@ -9,6 +10,8 @@ const fileSystemLogRepository = new LogRepositoryImpl(
   new FileSystemDatasource()
 )
 
+const emailService = new EmailService();
+
 
 export class Server {
 
@@ -16,12 +19,14 @@ export class Server {
     console.log('Server started...');
 
     //mandar email
-    const emailService = new EmailService(
-      fileSystemLogRepository,
-    );
-    emailService.sendEmailWithAttachment(
-      ['diegogaraycullas@gmail.com', 'elizabethgalvansandoval@gmail.com']
-    )
+    new SendEmailLogs(
+      emailService,
+      fileSystemLogRepository
+    ).execute(['diegogaraycullas@gmail.com', 'elizabethgalvansandoval@gmail.com'])
+
+    // emailService.sendEmailWithAttachment(
+    //   ['diegogaraycullas@gmail.com', 'elizabethgalvansandoval@gmail.com']
+    // )
 
 
 
