@@ -17,15 +17,9 @@ export class Server {
 
     //mandar email
     const emailService = new EmailService();
-    emailService.sendEmail({
-      to: 'diegogaraycullas@gmail.com',
-      subject: 'Teste log de sistema',
-      html: `
-        <h3>Log de Sistema - NOC</h3>
-        <p>Teste de log de sistema</p>
-        <p>Ver logs adjuntos</p>
-      `
-    })
+    emailService.sendEmailWithAttachment(
+      ['diegogaraycullas@gmail.com', 'elizabethgalvansandoval@gmail.com']
+    )
 
 
 
