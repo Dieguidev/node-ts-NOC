@@ -16,7 +16,9 @@ export class Server {
     console.log('Server started...');
 
     //mandar email
-    const emailService = new EmailService();
+    const emailService = new EmailService(
+      fileSystemLogRepository,
+    );
     emailService.sendEmailWithAttachment(
       ['diegogaraycullas@gmail.com', 'elizabethgalvansandoval@gmail.com']
     )
