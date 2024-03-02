@@ -1,7 +1,9 @@
+import { envs } from "../config/plugins/envs.plugin";
 import { CheckService } from "../domain/use-cases/checks/check.use-case";
 import { FileSystemDatasource } from "../infrastructure/datasources/file-system.datasource";
 import { LogRepositoryImpl } from "../infrastructure/repositories/log.repository.imple";
 import { CronService } from "./cron/cron-service";
+import { EmailService } from "./email/email-service";
 
 const fileSystemLogRepository = new LogRepositoryImpl(
   new FileSystemDatasource()
@@ -14,6 +16,16 @@ export class Server {
     console.log('Server started...');
 
     //mandar email
+    const emailService = new EmailService();
+    emailService.sendEmail({
+      to: 'diegogaraycullas@gmail.com',
+      subject: 'Teste log de sistema',
+      html: `
+        <h3>Log de Sistema - NOC</h3>
+        <p>Teste de log de sistema</p>
+        <p>Ver logs adjuntos</p>
+      `
+    })
 
 
 
