@@ -19,14 +19,11 @@ export class Server {
     console.log('Server started...');
 
     //mandar email
-    new SendEmailLogs(
-      emailService,
-      fileSystemLogRepository
-    ).execute(['diegogaraycullas@gmail.com', 'elizabethgalvansandoval@gmail.com'])
+    // new SendEmailLogs(
+    //   emailService,
+    //   fileSystemLogRepository
+    // ).execute(['diegogaraycullas@gmail.com', 'elizabethgalvansandoval@gmail.com'])
 
-    // emailService.sendEmailWithAttachment(
-    //   ['diegogaraycullas@gmail.com', 'elizabethgalvansandoval@gmail.com']
-    // )
 
 
 
