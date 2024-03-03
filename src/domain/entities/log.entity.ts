@@ -28,7 +28,8 @@ export class LogEntity {
   }
 
   // este metodo genera json a partir del documento de logs
-  static fromJson = (json: string): LogEntity => {
+  static fromJson = (json: string = '{}'): LogEntity => {
+    json = (json === '') ? '{}' : json
     const { message, level, createdAt, origin } = JSON.parse(json);
 
     const log = new LogEntity({
