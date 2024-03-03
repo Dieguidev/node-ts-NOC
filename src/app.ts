@@ -1,7 +1,7 @@
 
 
 import { envs } from "./config/plugins/envs.plugin";
-import { MongoDatabase } from "./data/mongodb/init";
+import {  MongoDatabase } from "./data/mongodb";
 import { Server } from "./presentation/server";
 
 
@@ -16,7 +16,14 @@ async function main() {
     dbName: envs.MONGODB_NAME
   })
 
+
+  // const logs = await LogModel.find()
+  // console.log(logs);
+
+
+
+
   // Server.start();
-  // console.log(envs);
+
 
 }

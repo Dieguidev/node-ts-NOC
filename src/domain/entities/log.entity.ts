@@ -27,8 +27,23 @@ export class LogEntity {
     this.origin = origin;
   }
 
+  // este metodo genera json a partir del documento de logs
   static fromJson = (json: string): LogEntity => {
     const { message, level, createdAt, origin } = JSON.parse(json);
+
+    const log = new LogEntity({
+      level,
+      message,
+      origin,
+      createdAt
+    });
+    return log;
+  }
+
+
+  //metodo para regresar la estructura de log desde un objeto de mongodb
+  static fromObject = (object: {[key : string]: any}): LogEntity => {
+    const { message, level, createdAt, origin } = object;
 
     const log = new LogEntity({
       level,
