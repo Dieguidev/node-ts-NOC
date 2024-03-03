@@ -4,13 +4,15 @@ import { CheckService } from "../domain/use-cases/checks/check.use-case";
 import { SendEmailLogs } from "../domain/use-cases/email/send-email-logs.use-case";
 import { FileSystemDatasource } from "../infrastructure/datasources/file-system.datasource";
 import { MongoLOgDataSource } from "../infrastructure/datasources/mongo-log.datasource";
+import { PostgresLogDataSource } from "../infrastructure/datasources/postgre-log.datasource";
 import { LogRepositoryImpl } from "../infrastructure/repositories/log.repository.imple";
 import { CronService } from "./cron/cron-service";
 import { EmailService } from "./email/email-service";
 
 const logRepository = new LogRepositoryImpl(
-  new FileSystemDatasource(),
+  // new FileSystemDatasource(),
   // new MongoLOgDataSource()
+  new PostgresLogDataSource
 )
 
 const emailService = new EmailService();
@@ -38,7 +40,7 @@ export class Server {
     //   '*/5 * * * * *',
     //   () => {
     //     // const url = 'http://localhost:3000'
-    //     const url = 'https://google.com'
+    //     const url = 'https://google.comm'
 
     //     new CheckService(
     //       logRepository,
